@@ -1,0 +1,40 @@
+{% extends 'user/layout/base.html' %}
+{% load static %}
+{%block body%}
+
+
+<div>
+  <h2 style="text-align : center; padding:5px ;color:DarkSlateGray"> Borrowed Book</h2>
+  <table class="table table-striped">
+  <thead>
+    <tr style="background-color: DarkSlateGray ; color:white">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Auther</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th><td scope="col">Start Date Borrow</td>
+      <td scope="col">Return Date borrowed</td>
+      <td scope="col">Return Book for shelf</td>
+    </tr>
+  </thead>
+  <tbody>
+  {%for b in books%}
+    <tr>
+      <th scope="row">{{b.book.id}}</th>
+      <td scope="col">{{b.book.name}}</td>
+      <td scope="col">{{b.book.author}}</td>
+      <td scope="col">{{b.book.category}}</td>
+      <td scope="col">{{b.book.des}}</td>
+      <td scope="col">{{b.st_borrow}}</td>
+      <td scope="col">{{b.return_borrow}}</td>
+      <td><a  class="btn btn-danger"   style="margin:5px" href="{% url 'returnBook' b.book.id %}">Return Book for Shelf</a></td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<!-- partial -->
+
+</div>
+
+{% endblock %}

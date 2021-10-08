@@ -1,0 +1,65 @@
+{% extends 'user/layout/base_admin.html' %}
+{% load static %}
+{% block body%}
+
+<div>
+  <h2 style="text-align : center; padding:5px ;color:DarkSlateGray">Book</h2>
+   <a  class="btn btn-success"   style="margin:5px" href="{% url 'addbook' %}">Add Book</a>
+  <table class="table table-striped">
+  <thead>
+    <tr style="background-color: DarkSlateGray ; color:white">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Auther</th>
+      <th scope="col">Category</th>
+       <th scope="col">Description</th>
+      <th scope="col">Avilable</th>
+      <th scope="col">Image</th>
+       <th scope="col">Start Date Borrow</th>
+      <th scope="col">Return Date Borrow</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for book in books %}
+    <tr>
+      <th scope="row">{{book.id}}</th>
+      <td scope="col">{{book.name}}</td>
+      <td scope="col">{{book.author}}</td>
+      <td scope="col">{{book.category}}</td>
+       <td scope="col">{{book.des}}</td>
+      <td scope="col">{{book.avilable}}</td>
+      <td scope="col">{{book.img}}</td>
+        <td scope="col"></td>
+      <td scope="col"></td>
+      <td scope="col"><a  class="btn btn-warning" style="margin:5px" href="{% url 'updatebook' book.id%}">Update</a></td>
+      <td scope="col"><a  class="btn btn-danger" style="margin:5px" href="{% url 'deletebook' book.id%}">Delete</a></td>
+    </tr>
+
+  {%endfor%}
+    {% for b in bor %}
+    <tr>
+      <th scope="row">{{b.book.id}}</th>
+      <td scope="col">{{b.book.name}}</td>
+      <td scope="col">{{b.book.author}}</td>
+      <td scope="col">{{b.book.category}}</td>
+       <td scope="col">{{b.book.des}}</td>
+      <td scope="col">{{b.book.avilable}}</td>
+      <td scope="col">{{b.book.img}}</td>
+        <td scope="col">{{b.st_borrow}}</td>
+      <td scope="col">{{b.return_borrow}}</td>
+      <td scope="col"><a  class="btn btn-warning" style="margin:5px" href="{% url 'updatebook' b.book.id%}">Update</a></td>
+      <td scope="col"><a  class="btn btn-danger" style="margin:5px" href="{% url 'deletebook' b.book.id%}">Delete</a></td>
+    </tr>
+
+  {%endfor%}
+
+  </tbody>
+
+</table>
+<!-- partial -->
+
+</div>
+{%endblock%}

@@ -1,0 +1,17 @@
+{% extends 'user/layout/base.html' %}
+{% load static %}
+{% block body%}
+<div class="container"><br>
+<form method="POST">
+    {% csrf_token%}
+    {%csrf_token%}
+    {% for field in form %}
+    <h6 style="color:DarkSlateGray">{{field.label}}</h6>
+    {{field}}<br>
+    {%endfor%}
+     <div class="col-12">
+    <button type="submit" class="btn btn-warning" style="float:right">UPDATE NOW</button>
+
+</form>
+    </div>
+{% endblock %}

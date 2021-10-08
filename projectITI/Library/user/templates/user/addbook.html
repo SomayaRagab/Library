@@ -1,0 +1,22 @@
+{% extends 'user/layout/base_admin.html' %}
+{% load static %}
+{% block body %}
+<body>
+
+<div class="container">
+<form method="POST"><br>
+    {%csrf_token%}
+    {% for field in form %}
+    {{field.label}}
+    {{field}}<br>
+    {% if field.label == 'Category'%} <br> {%endif%}
+    {%endfor%}
+     <div class="col-12">
+    <button type="submit" class="btn btn-success" style="float:right">ADD</button>
+     </div>
+</form>
+</div>
+
+</body>
+
+{%endblock%}

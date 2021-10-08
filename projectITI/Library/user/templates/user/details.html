@@ -1,0 +1,44 @@
+{% extends 'user/layout/base.html' %}
+{% load static %}
+
+{%block body%}
+
+<body onload="borrowedBookOrNot()">
+
+  <img src="{% static 'user/images/'|add:book.img %}" class="card-img-top" alt="..."  style="width: 250px ; height: 250px ; margin:20px">
+  <div class="card-body">
+    <h4 class="card-title">Name : {{book.name}}</h4>
+    <h6 class="card-text" >Description : {{book.des}}</h6>
+     <a href="{% url 'home' %}" class="btn btn-success">
+         Back to Home</a>
+      <form action="{% url 'borrow' book.id %}" method="POST" >
+          {%csrf_token%}
+          <button type="submit" class="btn btn-success"  id="borrow"   style="margin-top:5px" >Borrow</button>
+
+      </form>
+
+
+
+      <h5 id ='chan1'></h5>
+      <h5 id ='chan2'></h5>
+  </div>
+
+
+<script>
+
+    function borrowedBookOrNot(){
+    if( {{isBorrow}} == 0){
+    document.getElementById('borrow').disabled = true;
+    document.getElementById('chan1').innerHTML='Start of borrowing date : {{bor.st_borrow}}';
+    document.getElementById('chan2').innerHTML='End of borrowing date : {{bor.return_borrow}}';
+
+    }
+    else if( {{isBorrow}} == 1){
+    document.getElementById('borrow').disabled = true;
+    document.getElementById('chan1').innerHTML='This book is borrowed';
+    }
+    }
+
+</script>
+</body>
+{%endblock%}

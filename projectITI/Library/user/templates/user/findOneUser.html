@@ -1,0 +1,43 @@
+{% extends 'user/layout/base_admin.html' %}
+{% load static %}
+{% block body%}
+{%if user == ''%}
+{% for messag in messages %}
+ <h1>{{messag}}</h1>
+
+{% endfor %}
+{%else%}
+<div>
+  <h2 style="text-align : center; padding:5px; color:DarkSlateGray">User</h2>
+  <table class="table table-striped">
+  <thead>
+    <tr style="background-color: DarkSlateGray ; color:white">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Password</th>
+      <th scope="col">Confirm Password</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{user.id}}</th>
+      <td scope="col">{{user.username}}</td>
+      <td scope="col">{{user.email}}</td>
+      <td scope="col">{{user.role}}</td>
+       <td scope="col">{{user.password}}</td>
+      <td scope="col">{{user.confirm}}</td>
+      <td scope="col"><button type="button" class="btn btn-warning" style="margin:5px">Update</button></td>
+      <td scope="col"><button type="button" class="btn btn-danger" style="margin:5px">Delete</button></td>
+    </tr>
+
+  </tbody>
+</table>
+<!-- partial -->
+
+</div>
+{% endif %}
+{%endblock%}
